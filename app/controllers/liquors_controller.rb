@@ -23,6 +23,20 @@ class LiquorsController < ApplicationController
     end
   end
 
+  def edit
+    @liquor = Liquor.find(params[:id])
+  end
+
+  def update
+    @liquor = Liquor.find(params[:id])
+
+    if @liquor.update(liquor_params)
+      redirect_to @liquor
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def liquor_params
