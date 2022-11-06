@@ -8,6 +8,10 @@
     <%= f.text_area :body %>
   </p>
   <p>
+    <%= f.label :status %><br>
+    <%= f.select :status, ['public', 'private', 'archived'], tabindex: 1 %>
+  </p>
+  <p>
     <%= f.submit %>
   </p>
 <% end %>
