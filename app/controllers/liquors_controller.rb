@@ -37,6 +37,13 @@ class LiquorsController < ApplicationController
     end
   end
 
+  def destroy
+    @liquor = Liquor.find(params[:id])
+    @liquor.destroy
+
+    redirect_to root_path, status: :see_other
+  end
+
   private
 
   def liquor_params

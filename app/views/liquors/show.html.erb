@@ -3,4 +3,8 @@
 
 <ul>
   <li><%= link_to "Edit", edit_liquor_path(@liquor) %></li>
+  <li><%= link_to "Destroy", liquor_path(@liquor), data: {
+                  "turbo_method": :delete,
+                  turbo_confirm: "Are you sure?"
+                } %></li>
 </ul>
