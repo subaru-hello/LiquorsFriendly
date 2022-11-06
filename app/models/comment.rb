@@ -5,4 +5,12 @@ class Comment < ApplicationRecord
 
   validates :body, presence: true
   validates :commenter, presence: true
+
+  VALID_STATUSES = %w[public private archived].freeze
+
+  validates :status, inclusion: { in: VALID_STATUSES }
+
+  def archived?
+    status == 'archived'
+  end
 end

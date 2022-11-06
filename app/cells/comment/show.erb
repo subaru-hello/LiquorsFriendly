@@ -1,3 +1,5 @@
 <h3>Comment</h3>
-<%= body %>by  <%= commenter %>
-
+<% unless archived?%>
+  <%= body %>by  <%= commenter %>
+<%=  destroy_link%>
+<%end%>
