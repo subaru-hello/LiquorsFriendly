@@ -2,10 +2,12 @@
 <ul>
   <% @liquors.each do |liquor| %>
     <li>
-      <%= liquor.name %>
+      <%= link_to liquor.name, liquor %>
     </li>
     <li>
       <%= liquor.price %>
-      </li>
+    </li>
   <% end %>
 </ul>
+
+<%= link_to "New Liquor", new_liquor_path %>
