@@ -33,6 +33,14 @@
   </div>
 
   <div>
+    <%= f.label :status %><br>
+    <%= f.select 'status',['on_sale', 'booked', 'on_sale'],  tabindex: 1  %>
+    <% liquor.errors.full_messages_for(:status).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+ 
+  <div>
     <%= f.submit %>
   </div>
 

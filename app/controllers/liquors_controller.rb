@@ -47,6 +47,6 @@ class LiquorsController < ApplicationController
   private
 
   def liquor_params
-    params.require(:liquor).permit(:name, :price, :percentage, :amount)
+    params.require(:liquor).permit(:name, :price, :percentage, :amount, :status)
   end
 end
