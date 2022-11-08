@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Drinkings</h1>
+
+<div id="drinkings">
+  <% @drinkings.each do |drinking| %>
+    <%= render drinking %>
+    <p>
+      <%= link_to "Show this drinking", drinking %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New drinking", new_drinking_path %>
+
+<%= month_calendar(events: @drinkings) do |date, meetings| %>
+  <%= date %>
+
+  <% meetings.each do |meeting| %>
+    <div>
+      <%= link_to meeting.name, meeting %>
+    </div>
+  <% end %>
+<% end %>
