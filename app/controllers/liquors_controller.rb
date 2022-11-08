@@ -17,9 +17,9 @@ class LiquorsController < ApplicationController
     @liquor = Liquor.new(liquor_params)
 
     if @liquor.save
-      redirect_to @liquor
+      redirect_to @liquor, notice: "#{@liquor.name}を追加しました。"
     else
-      render :new, status: :unprocessable_entity
+      render :new, alert: '登録に失敗しました。', status: :unprocessable_entity
     end
   end
 
@@ -31,9 +31,9 @@ class LiquorsController < ApplicationController
     @liquor = Liquor.find(params[:id])
 
     if @liquor.update(liquor_params)
-      redirect_to @liquor
+      redirect_to @liquor, notice: "#{@liquor.name}を更新しました。"
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, alert: '更新に失敗しました。', status: :unprocessable_entity
     end
   end
 
@@ -41,7 +41,7 @@ class LiquorsController < ApplicationController
     @liquor = Liquor.find(params[:id])
     @liquor.destroy
 
-    redirect_to root_path, status: :see_other
+    redirect_to root_path, alert: '削除に成功しました。', status: :see_other
   end
 
   private
