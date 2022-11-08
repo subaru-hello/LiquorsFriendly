@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,26 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_221_106_223_241) do
-  create_table 'comments', force: :cascade do |t|
-    t.string 'commenter'
-    t.text 'body'
-    t.integer 'liquor_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'status'
-    t.index ['liquor_id'], name: 'index_comments_on_liquor_id'
+ActiveRecord::Schema[7.0].define(version: 2022_11_08_134431) do
+  create_table "comments", force: :cascade do |t|
+    t.string "commenter"
+    t.text "body"
+    t.integer "liquor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status"
+    t.index ["liquor_id"], name: "index_comments_on_liquor_id"
   end
 
-  create_table 'liquors', force: :cascade do |t|
-    t.string 'name'
-    t.float 'percentage'
-    t.integer 'price'
-    t.integer 'amount'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'status'
+  create_table "drinkings", force: :cascade do |t|
+    t.string "name"
+    t.datetime "starts_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_foreign_key 'comments', 'liquors'
+  create_table "liquors", force: :cascade do |t|
+    t.string "name"
+    t.float "percentage"
+    t.integer "price"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status"
+  end
+
+  add_foreign_key "comments", "liquors"
 end
