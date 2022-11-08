@@ -1,13 +1,17 @@
-<h1>Liquors#index</h1>
-<ul>
-  <% @liquors.each do |liquor| %>
-    <li>
+<h1>お酒一覧</h1>
+<table class="table table-hover">
+  <thead class="thead-default">
+    <tr>
+      <th>名前</th>
+      <th>値段</th>
+      <th>在庫状態</th>
+    </tr>
+      <% @liquors.each do |liquor| %>
+    <tr>
       <%= cell(:liquors, liquor)%>
-    </li>
-    <li>
-      <%= liquor.price %>
-    </li>
+    </tr>
   <% end %>
-</ul>
+  </thead>
+</table>
 
 <%= link_to "New Liquor", new_liquor_path %>

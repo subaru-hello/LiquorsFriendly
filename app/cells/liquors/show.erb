@@ -1,5 +1,12 @@
     <% unless sold_out? %>
-      <li>
+      <td>
         <%= liquor_link %>
-      </li>
+      </td>
+      <td>
+        <%= price %>
+      </td>
+      <td>
+        <%= liquor_status %>
+      </td>
     <% end %>
+
