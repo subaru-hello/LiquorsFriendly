@@ -8,8 +8,9 @@
                   turbo_confirm: "Are you sure?"
                 } %></li>
 </ul>
+<%= link_to '一覧に戻る', liquors_path%>
 
 <h2>Comments</h2>
 <%= render @liquor.comments %>
-<h2>Add a comment:</h2>
+<h3>Add a comment:</h3>
 <%= render 'comments/form' %>
