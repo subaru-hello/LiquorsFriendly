@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_221_108_141_815) do
+ActiveRecord::Schema[7.0].define(version: 20_221_110_133_424) do
   create_table 'comments', force: :cascade do |t|
     t.string 'commenter'
     t.text 'body'
@@ -20,7 +20,9 @@ ActiveRecord::Schema[7.0].define(version: 20_221_108_141_815) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.string 'status'
+    t.integer 'user_id'
     t.index ['liquor_id'], name: 'index_comments_on_liquor_id'
+    t.index ['user_id'], name: 'index_comments_on_user_id'
   end
 
   create_table 'drinkings', force: :cascade do |t|
@@ -28,6 +30,8 @@ ActiveRecord::Schema[7.0].define(version: 20_221_108_141_815) do
     t.datetime 'starts_at'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.integer 'user_id'
+    t.index ['user_id'], name: 'index_drinkings_on_user_id'
   end
 
   create_table 'liquors', force: :cascade do |t|
@@ -38,6 +42,20 @@ ActiveRecord::Schema[7.0].define(version: 20_221_108_141_815) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
     t.string 'status'
+    t.integer 'user_id', null: false
+    t.integer 'drinking_id'
+    t.index ['drinking_id'], name: 'index_liquors_on_drinking_id'
+    t.index ['user_id'], name: 'index_liquors_on_user_id'
+  end
+
+  create_table 'tags', force: :cascade do |t|
+    t.string 'name'
+    t.integer 'liquor_id', null: false
+    t.integer 'drinking_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['drinking_id'], name: 'index_tags_on_drinking_id'
+    t.index ['liquor_id'], name: 'index_tags_on_liquor_id'
   end
 
   create_table 'users', force: :cascade do |t|
@@ -53,4 +71,6 @@ ActiveRecord::Schema[7.0].define(version: 20_221_108_141_815) do
   end
 
   add_foreign_key 'comments', 'liquors'
+  add_foreign_key 'tags', 'drinkings'
+  add_foreign_key 'tags', 'liquors'
 end
