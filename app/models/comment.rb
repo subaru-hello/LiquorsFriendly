@@ -2,7 +2,7 @@
 
 class Comment < ApplicationRecord
   belongs_to :liquor
-
+  belongs_to :user
   validates :body, presence: true
   validates :commenter, presence: true
 
