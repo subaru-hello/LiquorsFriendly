@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @drinking %>
+<%= render 'drinkings/detail', drinking: @drinking %>
 
 <div>
   <%= link_to 'Edit this drinking', edit_drinking_path(@drinking) %> |
