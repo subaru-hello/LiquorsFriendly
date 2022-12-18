@@ -2,13 +2,13 @@
 <p><%= @liquor.price %></p>
 
 <ul>
-  <li><%= link_to "Edit", edit_liquor_path(@liquor) %></li>
-  <li><%= link_to "Destroy", liquor_path(@liquor), data: {
+  <li><%= link_to 'Edit', edit_liquor_path(@liquor) %></li>
+  <li><%= link_to 'Destroy', liquor_path(@liquor), data: {
                   "turbo_method": :delete,
-                  turbo_confirm: "Are you sure?"
+                  turbo_confirm: 'Are you sure?'
                 } %></li>
 </ul>
-<%= link_to '一覧に戻る', liquors_path%>
+<%= link_to '一覧に戻る', liquors_path %>
 
 <h2>Comments</h2>
 <%= render @comments %>

@@ -1,4 +1,4 @@
-<%= form_with model: [ liquor, liquor.comments.build ] do |f| %>
+<%= form_with model: [liquor, liquor.comments.build] do |f| %>
 
   <p>
     <%= f.label :title %><br>
@@ -6,14 +6,15 @@
   </p>
   <p>
     <%= f.label :body %><br>
-    <%= f.text_area :body %>
+
+    <%= f.text_area :body, rows: '4' %>
   </p>
   <p>
     <%= f.label :status %><br>
-    <%= f.select :status, ['public', 'private', 'archived'], tabindex: 1 %>
+    <%= f.select :status, %w[public private archived], tabindex: 1 %>
   </p>
     <%= f.hidden_field :liquor_id, value: liquor.id %>
- 
+
   <p>
     <%= f.submit %>
   </p>

@@ -6,12 +6,12 @@
   <% @drinkings.each do |drinking| %>
     <%= render drinking %>
     <p>
-      <%= link_to "Show this drinking", drinking %>
+      <%= link_to 'Show this drinking', drinking %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New drinking", new_drinking_path %>
+<%= link_to 'New drinking', new_drinking_path %>
 今月の飲酒回数<%= @total_drinkings %>回
 <%= month_calendar(events: @drinkings) do |date, meetings| %>
   <%= date %>
