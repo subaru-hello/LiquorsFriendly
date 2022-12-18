@@ -1,6 +1,6 @@
 <%= form_with model: liquor do |f| %>
   <div>
-    <%= f.label :name%><br>
+    <%= f.label :name %><br>
     <%= f.text_field :name %>
     <% liquor.errors.full_messages_for(:name).each do |message| %>
       <div><%= message %></div>
@@ -8,7 +8,7 @@
   </div>
 
   <div>
-    <%= f.label :price%><br>
+    <%= f.label :price %><br>
     <%= f.text_field :price %>
     <% liquor.errors.full_messages_for(:price).each do |message| %>
       <div><%= message %></div>
@@ -16,13 +16,12 @@
   </div>
 
   <div>
-    <%= f.label :amount%><br>
+    <%= f.label :amount %><br>
     <%= f.text_field :amount %>
     <% liquor.errors.full_messages_for(:amount).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
-
 
   <div>
     <%= f.label :percentage %><br>
@@ -34,14 +33,14 @@
 
   <div>
     <%= f.label :status %><br>
-    <%= f.select 'status',['on_sale', 'booked', 'on_sale'],  tabindex: 1  %>
+    <%= f.select 'status', %w[on_sale booked on_sale], tabindex: 1 %>
     <% liquor.errors.full_messages_for(:status).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
- 
+
   <div>
     <%= f.submit %>
   </div>
 
-<%end%>
+<% end %>

@@ -1,17 +1,9 @@
 <h1>お酒一覧</h1>
-<table class="table table-hover">
-  <thead class="thead-default">
-    <tr>
-      <th class='col'>名前</th>
-      <th class='col'>値段</th>
-      <th class='col'>在庫状態</th>
-    </tr>
+  <div class="max-w-2xl mx-auto">
+    <div class="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
       <% @liquors.each do |liquor| %>
-    <tr>
-      <%= cell(:liquors, liquor)%>
-    </tr>
-  <% end %>
-  </thead>
-</table>
-
-<%= link_to "New Liquor", new_liquor_path %>
+        <%= cell(:liquors, liquor) %>
+      <% end %>
+    </div>
+  </div>
+<%= link_to 'New Liquor', new_liquor_path %>
