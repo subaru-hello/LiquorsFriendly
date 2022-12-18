@@ -2,7 +2,7 @@
 
 class CommentCell < Cell::ViewModel
   property :body
-  property :commenter
+  property :title
   property :status
   property :liquor
   def show

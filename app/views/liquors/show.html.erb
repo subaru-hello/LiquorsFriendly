@@ -11,6 +11,6 @@
 <%= link_to '一覧に戻る', liquors_path%>
 
 <h2>Comments</h2>
-<%= render @liquor.comments %>
+<%= render @comments %>
 <h3>Add a comment:</h3>
-<%= render 'comments/form' %>
+<%= render 'comments/form', liquor: @liquor %>
