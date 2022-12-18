@@ -7,6 +7,7 @@ class LiquorsController < ApplicationController
 
   def show
     @liquor = Liquor.find(params[:id])
+    @comments = @liquor.comments
   end
 
   def new
@@ -38,7 +39,7 @@ class LiquorsController < ApplicationController
   end
 
   def destroy
-    @liquor = Liquor.find(params[:id])
+    @liquor = User.first.liquors.find(params[:id])
     @liquor.destroy
 
     redirect_to root_path, alert: '削除に成功しました。', status: :see_other
@@ -47,6 +48,6 @@ class LiquorsController < ApplicationController
   private
 
   def liquor_params
-    params.require(:liquor).permit(:name, :price, :percentage, :amount, :status)
+    params.require(:liquor).permit(:name, :price, :percentage, :amount, :status, :liquor_id)
   end
 end
