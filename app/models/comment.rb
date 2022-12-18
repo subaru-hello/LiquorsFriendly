@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
   belongs_to :liquor
   belongs_to :user
   validates :body, presence: true
-  validates :commenter, presence: true
+  validates :title, presence: true
 
   VALID_STATUSES = %w[public private archived].freeze
 
