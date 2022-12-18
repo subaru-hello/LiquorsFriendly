@@ -26,26 +26,20 @@ class DrinkingsController < ApplicationController
   def create
     @drinking = Drinking.new(drinking_params)
 
-    respond_to do |format|
-      if @drinking.save
-        format.html { redirect_to drinking_url(@drinking), notice: 'Drinking was successfully created.' }
-        format.json { render :show, status: :created, location: @drinking }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @drinking.errors, status: :unprocessable_entity }
-      end
+    if @drinking.save
+      redirect_to drinking_url(@drinking), notice: 'Drinking was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /drinkings/1 or /drinkings/1.json
   def update
-    respond_to do |format|
+    respond_to do |_format|
       if @drinking.update(drinking_params)
-        format.html { redirect_to drinking_url(@drinking), notice: 'Drinking was successfully updated.' }
-        format.json { render :show, status: :ok, location: @drinking }
+        redirect_to drinking_url(@drinking), notice: 'Drinking was successfully updated.'
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @drinking.errors, status: :unprocessable_entity }
+        render :edit, status: :unprocessable_entity
       end
     end
   end
@@ -64,7 +58,7 @@ class DrinkingsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_drinking
-    @drinking = Drinking.find(params[:id])
+    @drinking = User.first.drinkings.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
