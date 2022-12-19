@@ -5,10 +5,10 @@ class DrinkingsController < ApplicationController
 
   # GET /drinkings or /drinkings.json
   def index
-    @drinkings = Drinking.all
+    @drinkings = User.first.drinkings.all
     start_date = params.fetch(:start_date, Date.today).to_date
-    @drinkings = Drinking.where(starts_at: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
-    @total_drinkings = Drinking.where(starts_at: start_date.beginning_of_month..start_date.end_of_month).pluck(:id).count
+    @drinkings = User.first.drinkings.where(starts_at: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
+    @total_drinkings = User.first.drinkings.where(starts_at: start_date.beginning_of_month..start_date.end_of_month).pluck(:id).count
   end
 
   # GET /drinkings/1 or /drinkings/1.json
@@ -16,7 +16,7 @@ class DrinkingsController < ApplicationController
 
   # GET /drinkings/new
   def new
-    @drinking = Drinking.new
+    @drinking = User.first.drinkings.new
   end
 
   # GET /drinkings/1/edit
@@ -24,10 +24,10 @@ class DrinkingsController < ApplicationController
 
   # POST /drinkings or /drinkings.json
   def create
-    @drinking = Drinking.new(drinking_params)
+    @drinking = User.first.drinkings.new(drinking_params)
 
     if @drinking.save
-      redirect_to drinking_url(@drinking), notice: 'Drinking was successfully created.'
+      redirect_to @drinking, notice: "#{@drinking.name}を作成しました。"
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,12 +35,10 @@ class DrinkingsController < ApplicationController
 
   # PATCH/PUT /drinkings/1 or /drinkings/1.json
   def update
-    respond_to do |_format|
-      if @drinking.update(drinking_params)
-        redirect_to drinking_url(@drinking), notice: 'Drinking was successfully updated.'
-      else
-        render :edit, status: :unprocessable_entity
-      end
+    if @drinking.update(drinking_params)
+      redirect_to @drinking, notice: '飲み会予定を更新しました。'
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -48,10 +46,7 @@ class DrinkingsController < ApplicationController
   def destroy
     @drinking.destroy
 
-    respond_to do |format|
-      format.html { redirect_to drinkings_url, notice: 'Drinking was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to drinkings_url, notice: '飲み会予定を削除しました'
   end
 
   private
