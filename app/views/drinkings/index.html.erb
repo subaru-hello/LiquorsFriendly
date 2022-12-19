@@ -1,18 +1,33 @@
 <p style="color: green"><%= notice %></p>
+<%= render 'stats', total_drinkings: @total_drinkings %>
 
-<h1>Drinkings</h1>
+<div id="drinkings" class="relative flex flex-col w-full min-w-0 mb-0 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
+  <div class="p-6 pb-0 mb-0 bg-white rounded-t-2xl">
+    <h6>今月の飲み会予定</h6>
+  </div>
+  <div class="flex-auto px-0 pt-0 pb-2">
+    <div class="p-0 overflow-x-auto">
+      <table class="items-center w-full mb-0 align-top border-gray-200 text-slate-500">
+        <thead class="align-bottom">
+          <tr>
+            <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">のみ会名</th>
+            <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">同席者</th>
+            <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Status</th>
+            <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">日時</th>
+            <th class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70"></th>
+          </tr>
+        </thead>
+        <% @drinkings.each do |drinking| %>
+          <%= render drinking %>
+        <% end %>
+       </table>
+      </div>
+    </div>
+  </div>
 
-<div id="drinkings">
-  <% @drinkings.each do |drinking| %>
-    <%= render drinking %>
-    <p>
-      <%= link_to 'Show this drinking', drinking %>
-    </p>
-  <% end %>
-</div>
+<%= link_to '飲み会予定を追加', new_drinking_path %>
 
-<%= link_to 'New drinking', new_drinking_path %>
-今月の飲酒回数<%= @total_drinkings %>回
+
 <%= month_calendar(events: @drinkings) do |date, meetings| %>
   <%= date %>
 
