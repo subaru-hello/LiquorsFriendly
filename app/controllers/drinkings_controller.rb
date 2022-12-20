@@ -2,8 +2,8 @@
 
 class DrinkingsController < ApplicationController
   before_action :set_drinking, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: %i[index new edit update destroy]
 
-  # GET /drinkings or /drinkings.json
   def index
     @drinking = policy_scope(Drinking).all
     start_date = params.fetch(:start_date, Date.today).to_date
@@ -46,7 +46,7 @@ class DrinkingsController < ApplicationController
   private
 
   def set_drinking
-    @drinking = policy_scope(Drinking).find(params[:id])
+    @drinking = authorize Drinking.find(params[:id])
   end
 
   def drinking_params
