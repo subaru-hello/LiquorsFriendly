@@ -3,12 +3,12 @@
 class CommentsController < ApplicationController
   def new
     @liquor = Liquor.find(params[:liquor_id])
-    @comment = User.first.comments.new(comment_params)
+    @comment = current_user.comments.new(comment_params)
   end
 
   def create
     @liquor = Liquor.find(params[:liquor_id])
-    @comment = User.first.comments.new(comment_params)
+    @comment = current_user.comments.new(comment_params)
 
     return unless @comment.save
 
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @liquor = Liquor.find(params[:liquor_id])
-    @comment = @liquor.comments.find(params[:id])
+    @comment = authorize @liquor.comments.find(params[:id])
     @comment.destroy
     redirect_to liquor_path(@liquor), status: :see_other, notice: "#{@comment.title}を削除しました。"
   end
