@@ -26,16 +26,28 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
+  gem 'annotate'
+  gem 'bullet'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capybara'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-rails'
+  gem 'rspec-rails', '~> 6.0.0'
+  gem 'shoulda-matchers'
 end
 
 group :development do
+  gem 'erbcop'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
   gem 'web-console'
 end
 
 group :test do
-  gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+gem 'factory_bot_rails'
+gem 'faker'
+gem 'faker-japanese'
