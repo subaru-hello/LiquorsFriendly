@@ -33,7 +33,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-rails'
   gem 'rspec-rails', '~> 6.0.0'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
 group :development do
