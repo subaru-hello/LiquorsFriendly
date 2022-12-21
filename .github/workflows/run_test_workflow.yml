@@ -20,5 +20,7 @@ jobs:
           bundler-cache: true
       - name: Install dependencies
         run: bundle install
+      - name: Asset Compile
+        run: bundle exec rake assets:precompile
       - name: Run RSpec
         run: bundle exec rspec
