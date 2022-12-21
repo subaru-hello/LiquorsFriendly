@@ -2,7 +2,7 @@
 
 class DrinkingsController < ApplicationController
   before_action :set_drinking, only: %i[show edit update destroy]
-  before_action :authenticate_user!, only: %i[index new edit update destroy]
+  before_action :authenticate_user!
 
   def index
     @drinking = policy_scope(Drinking).all
@@ -14,13 +14,13 @@ class DrinkingsController < ApplicationController
   def show; end
 
   def new
-    @drinking = policy_scope(Drinking).new
+    @drinking = current_user.drinkings.new
   end
 
   def edit; end
 
   def create
-    @drinking = policy_scope(Drinking).new(drinking_params)
+    @drinking = current_user.drinkings.new(drinking_params)
 
     if @drinking.save
       redirect_to @drinking, notice: "#{@drinking.name}を作成しました。"
@@ -46,7 +46,7 @@ class DrinkingsController < ApplicationController
   private
 
   def set_drinking
-    @drinking = authorize Drinking.find(params[:id])
+    @drinking = policy_scope(Drinking).find(params[:id])
   end
 
   def drinking_params
