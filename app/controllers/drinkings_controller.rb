@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class DrinkingsController < ApplicationController
-  before_action :set_drinking, only: %i[show edit update destroy]
   before_action :authenticate_user!
+  before_action :set_drinking, only: %i[show edit update destroy]
 
   def index
     @drinking = policy_scope(Drinking).all
